@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import { RouteAssembly } from '@/utils';
 import { notFoundHandler } from '@/handlers';
+import { loggerMiddleware } from './middlewares';
 const app: Application = express();
 
 
@@ -8,6 +9,9 @@ const app: Application = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Middleware for logging
+app.use(loggerMiddleware);
 
 // Register routes
 app.use("/api/v1", RouteAssembly.createRouter());
