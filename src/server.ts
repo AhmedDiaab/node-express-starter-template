@@ -8,7 +8,7 @@ function main() {
     const { port } = env;
 
     server.listen(port, () => {
-        console.log(`Server is running on port ${port}⬆️⬆️⬆️`);
+        console.log(`Server is running on port ${port} ⬆️ ⬆️ ⬆️`);
     });
 }
 
