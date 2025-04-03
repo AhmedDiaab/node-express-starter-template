@@ -1,2 +1,10 @@
+# Node Modules
 /node_modules/
+
+# Build artifacts
 /dist/
+
+# Env files (you may want to ignore these)
+.env*
+
+!.env.example
