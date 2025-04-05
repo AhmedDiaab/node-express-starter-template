@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { logger } from "@/utils/logger.util";
 
 export class RouteAssembly {
     private static routes: Router[] = [];
@@ -21,7 +22,7 @@ export class RouteAssembly {
             RouteAssembly.router.use(route);
         });
 
-        console.log("Routes have been successfully assembled 👌🏻 👌🏻 👌🏻");
+        logger.debug("Routes have been successfully assembled 👌 👌 👌");
         return RouteAssembly.router;
     }
 }

@@ -1,8 +1,4 @@
-import morgan from 'morgan';
-import { createWriteStream } from 'fs';
-import { join } from 'path';
-import { cwd } from 'process';
+import { pinoHttp } from 'pino-http';
+import { logger } from "@/utils/logger.util";
 
-const logStream = createWriteStream(join(cwd(), 'logs/access.log'), { flags: 'a' });
-
-export const loggerMiddleware = morgan('combined', { stream: logStream }); // Logs requests in Apache-style format
+export const loggerMiddleware = pinoHttp({ logger });

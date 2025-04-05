@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
-import { RouteAssembly } from '@/utils';
 import { notFoundHandler } from '@/handlers';
+import { RouteAssembly } from '@/utils';
 import { loggerMiddleware } from './middlewares';
 const app: Application = express();
 

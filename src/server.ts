@@ -1,6 +1,7 @@
 import { createServer } from 'http';
-import app from './app';
 import { env } from '@/utils';
+import { logger } from '@/utils/logger.util';
+import app from '@/app';
 
 function main() {
     const server = createServer(app);
@@ -8,7 +9,7 @@ function main() {
     const { port } = env;
 
     server.listen(port, () => {
-        console.log(`Server is running on port ${port} ⬆️ ⬆️ ⬆️`);
+        logger.debug(`Server is running on port ${port} ⬆️ ⬆️ ⬆️`);
     });
 }
 
