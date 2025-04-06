@@ -2,6 +2,12 @@
   "name": "node-express-starter-template",
   "version": "1.0.0",
   "description": "",
+  "licenses": [
+    {
+      "type": "GPL-3.0-only",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.txt"
+    }
+  ],
   "main": "dist/server.js",
   "scripts": {
     "start:dev": "nodemon",
