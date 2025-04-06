@@ -12,17 +12,17 @@ class EnvironmentVariables {
             pattern: fileName,
             path: cwd(),
         });
-        
-        console.log('Environment variables initialized');
+
         this._environmentVariables = [];
         this._initialize();
         this._validateVariables();
-    
+        console.log('Environment variables initialized');
     }
 
     private _initialize() {
         this._environmentVariables = [
             'NODE_ENV',
+            'APP_NAME',
             'PORT',
             'LOG_LEVEL',
             'LOG_FILES_DIRECTORY_NAME',
@@ -42,6 +42,10 @@ class EnvironmentVariables {
             console.error(error_messages.join('\n'));
             exit(1);
         }
+    }
+
+    get appName(): string {
+        return ENV["APP_NAME"]!;
     }
 
     get port(): number {
