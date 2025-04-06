@@ -1,22 +1,32 @@
+import { HttpStatusCodes } from '@/enums';
 import { Response } from 'express';
 
+export type ResponseStatusText = 'success' | 'error';
+
+export interface ResponseData<T> {
+    timestamp: string;
+    status: ResponseStatusText;
+    message?: string | undefined;
+    data?: T | undefined;
+    details?: unknown | undefined;
+}
+
+export interface ErrorDetails<T> extends Pick<ResponseData<T>, 'timestamp' | 'status' | 'message' | 'details'> {
+    stack?: string;
+    isOperational: boolean;
+}
+
 export class ResponseSerializer {
-    static success(res: Response, data: any) {
-        const successResponse = {
-            success: true,
-            data,
-            timestamp: new Date().toISOString()
-        };
-        res.json(successResponse);
+    static success<T>(res: Response, statusCode: HttpStatusCodes, data: ResponseData<T>) {
+        // const successResponse = {
+        //     success: true,
+        //     data,
+        //     timestamp: new Date().toISOString()
+        // };
+        res.status(statusCode).json(data);
     }
 
-    static error(res: Response, error: any) {
-        const errorResponse = {
-            success: false,
-            message: error.message || 'Something went wrong',
-            details: error.details || null,
-            timestamp: new Date().toISOString()
-        };
-        res.status(error.statusCode || 500).json(errorResponse);
+    static error<T>(res: Response, statusCode: HttpStatusCodes, errorResponse: ErrorDetails<T>) {
+        res.status(statusCode).json(errorResponse);
     }
 }

@@ -1,10 +1,13 @@
-import { AppError } from "@/errors";
 import { NextFunction, Request, Response } from "express";
+import { AppError } from "@/errors";
+import { ResponseSerializer } from "@/serializers";
 
-export function globalErrorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+export function globalErrorHandler(err: Error, req: Request, res: Response, next: NextFunction): void {
     if (err instanceof AppError) {
-        let stack = err.stack!.match(/(Error: .+?\n\s+at .+)/)?.[0].replace('\n', ' '). replace('     ', ' ') || '';
-        res.status(err.statusCode).json({
+        const stack = err.stack!.match(/(Error: .+?\n\s+at .+)/)?.[0].replace('\n', ' ').replace('     ', ' ') || '';
+
+        ResponseSerializer.error(res, 500, {
+            timestamp: new Date().toISOString(),
             status: 'error',
             message: err.message,
             details: err.details,
@@ -14,9 +17,11 @@ export function globalErrorHandler(err: Error, req: Request, res: Response, next
         return;
     }
 
-    res.status(500).json({
+    ResponseSerializer.error(res, 500, {
+        timestamp: new Date().toISOString(),
         status: 'error',
         message: 'Internal Server Error',
-        stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+        stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+        isOperational: true,
     });
 };
