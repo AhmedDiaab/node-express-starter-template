@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import { globalErrorHandler, notFoundHandler } from '@/handlers';
 import { RouteAssembly } from '@/utils';
-import { loggerMiddleware } from '@/middlewares';
+import { loggerMiddleware, responseFormatter } from '@/middlewares';
 const app: Application = express();
 
 
@@ -9,6 +9,9 @@ const app: Application = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Middleware to format json responses
+app.use(responseFormatter);
 
 // Middleware for logging
 app.use(loggerMiddleware);

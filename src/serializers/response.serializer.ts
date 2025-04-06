@@ -18,11 +18,6 @@ export interface ErrorDetails<T> extends Pick<ResponseData<T>, 'timestamp' | 'st
 
 export class ResponseSerializer {
     static success<T>(res: Response, statusCode: HttpStatusCodes, data: ResponseData<T>) {
-        // const successResponse = {
-        //     success: true,
-        //     data,
-        //     timestamp: new Date().toISOString()
-        // };
         res.status(statusCode).json(data);
     }
 
