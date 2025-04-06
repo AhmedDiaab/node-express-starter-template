@@ -1,3 +1,4 @@
+import { NotFoundError } from '@/errors';
 import { Request, Response } from 'express';
 
 /**
@@ -10,7 +11,7 @@ import { Request, Response } from 'express';
  * @param next - The next middleware function (not used in this case)
  */
 function notFoundHandler(req: Request, res: Response): void {
-    res.status(404).json({ message: "Route not found" });
+    throw new NotFoundError();
 };
 
 export { notFoundHandler };
