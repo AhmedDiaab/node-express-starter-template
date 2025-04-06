@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "@/errors";
-import { ResponseSerializer } from "@/serializers";
+import { ResponseDispatcher } from "@/dispatchers";
 import { HttpStatusCodes } from "@/enums";
 
 export function globalErrorHandler(err: Error, req: Request, res: Response, next: NextFunction): void {
     if (err instanceof AppError) {
         const stack = err.stack?.split('\n').slice(0, 2).map(line => line.trim()).join(' ') || '';
 
-        ResponseSerializer.error(res, err.statusCode, {
+        ResponseDispatcher.error(res, err.statusCode, {
             timestamp: new Date().toISOString(),
             status: 'error',
             message: err.message,
@@ -18,7 +18,7 @@ export function globalErrorHandler(err: Error, req: Request, res: Response, next
         return;
     }
 
-    ResponseSerializer.error(res, HttpStatusCodes.InternalServerError, {
+    ResponseDispatcher.error(res, HttpStatusCodes.InternalServerError, {
         timestamp: new Date().toISOString(),
         status: 'error',
         message: 'Internal Server Error',

@@ -1,4 +1,4 @@
-import { ResponseSerializer } from '@/serializers';
+import { ResponseDispatcher } from '@/dispatchers';
 import { Request, Response, NextFunction } from 'express';
 
 export function responseFormatter(req: Request, res: Response, next: NextFunction) {
@@ -11,7 +11,7 @@ export function responseFormatter(req: Request, res: Response, next: NextFunctio
         }
 
         // Override json method to format response
-        ResponseSerializer.success(res, 200, {
+        ResponseDispatcher.success(res, 200, {
             timestamp: new Date().toISOString(),
             status: 'success',
             message: 'Request successful',

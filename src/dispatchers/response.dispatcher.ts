@@ -16,7 +16,7 @@ export interface ErrorDetails<T> extends Pick<ResponseData<T>, 'timestamp' | 'st
     isOperational: boolean;
 }
 
-export class ResponseSerializer {
+export class ResponseDispatcher {
     static success<T>(res: Response, statusCode: HttpStatusCodes, data: ResponseData<T>) {
         res.status(statusCode).json(data);
     }
