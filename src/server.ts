@@ -2,9 +2,13 @@ import { createServer } from 'http';
 import { env } from '@/utils';
 import { logger } from '@/utils/logger.util';
 import app from '@/app';
+import { databaseClient } from '@/database';
 
-function main() {
+async function main() {
     const server = createServer(app);
+
+    // Initialize database connection
+    await databaseClient.connect();
 
     const { port, appName, nodeEnvironment } = env;
 
