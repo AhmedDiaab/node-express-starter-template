@@ -32,11 +32,7 @@ COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/dist ./dist
 
 # Copy .env as .env.production (if exists), default name is .env.development
-COPY --from=builder /app/.env.development ./.env.production
-
-# Environment variables (override in compose)
-ENV NODE_ENV=production
-ENV TS_NODE_BASEURL=./dist 
+COPY --from=builder /app/.env.development ./.env.development 
 
 EXPOSE 3000
 

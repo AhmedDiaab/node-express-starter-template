@@ -3,11 +3,13 @@ services:
     container_name: node-app
     build: 
       context: .
-      args: 
-        - NODE_ENV=development  # Override if needed, default is development
     ports:
       - "3000:3000"
     restart: unless-stopped
+    environment:
+      - NODE_ENV=development # Override if needed, default is development
+      - TS_NODE_BASEURL=./dist
+      - DB_HOST=db # db refers to the name of this service in docker-compose.yml, not container name, also this overrides localhost in .env file
     depends_on:
       db:
         condition: service_healthy
@@ -19,11 +21,12 @@ services:
     container_name: database
     restart: unless-stopped
     ports:
-      - "${DB_PORT}:5432"
+      - "${DB_PORT}:${DB_PORT}"
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - PGPORT=${DB_PORT}
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_NAME}"]
       interval: 5s
