@@ -27,6 +27,15 @@ class EnvironmentVariables {
             'LOG_LEVEL',
             'LOG_FILES_DIRECTORY_NAME',
             'LOG_FILE_NAME',
+            'DB_HOST',
+            'DB_PORT',
+            'DB_USERNAME',
+            'DB_PASSWORD',
+            'DB_NAME',
+            'DB_TYPE',
+            'DB_LOGGING',
+            'DB_SSL',
+            'DB_USEUTC',
         ];
     }
 
@@ -67,6 +76,41 @@ class EnvironmentVariables {
     get logFileName() {
         return ENV["LOG_FILE_NAME"]!;
     }
+
+    get databaseHost() {
+        return ENV["DB_HOST"]!;
+    }
+    
+    get databasePort(): number {
+        return +ENV["DB_PORT"]!;
+    }
+    
+    get databaseUsername() {
+        return ENV["DB_USERNAME"];
+    }
+    get databasePassword() {
+        return ENV["DB_PASSWORD"];
+    }
+    get databaseName() {
+        return ENV["DB_NAME"];
+    }
+    
+    get databaseType() {
+        return ENV["DB_TYPE"]!;
+    }
+
+    get databaseLogging(): boolean {
+        return ENV["DB_LOGGING"]! === "true";
+    }
+    
+    get databaseSSL(): boolean {
+        return ENV["DB_SSL"]! === "true";
+    }
+
+    get databaseUseUTC() {
+        return ENV["DB_USE_UTC"]! === "true";
+    }
+
 }
 
 export const env = new EnvironmentVariables();
