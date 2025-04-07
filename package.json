@@ -30,8 +30,11 @@
   "dependencies": {
     "dotenv-flow": "^4.1.0",
     "express": "^5.1.0",
+    "pg": "^8.14.1",
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
-    "tsconfig-paths": "^4.2.0"
+    "reflect-metadata": "^0.2.2",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.22"
   }
 }
