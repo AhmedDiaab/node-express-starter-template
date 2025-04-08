@@ -145,13 +145,37 @@ import { IDatabaseClient } from '@lib/database';
 
 ### Run with Docker
 
+To run the application with Docker, use the following command:
+
 ```bash
 docker compose --env-file .env.development up -d --build
 ```
 
-- `.env` file is injected into both app and database containers.
-- Volume mounts & port mappings are pre-configured.
-- Works for both dev and production with proper env switching.
+- **`.env.development`** (or `.env.production`, depending on the environment) is injected into both the app and database containers. Make sure your environment file contains the correct configurations.
+- **Volume mounts & port mappings** are pre-configured, enabling the application to be accessed through the mapped ports (default `3000` for the app).
+- **Environment Switching**: The setup works for both development and production environments. The environment is controlled through the `.env` files:
+    - `.env.development` for development mode.
+    - `.env.production` for production mode.
+
+### Notes:
+- If you're in **development mode**, you can enable hot-reloading by mounting the `src` directory in the `docker-compose.yml`:
+  
+  ```yaml
+  volumes:
+    - ./src:/app/src  # Dev hot-reload (optional)
+  ```
+  
+  This allows automatic code updates without rebuilding the container.
+
+### Stopping the Containers
+
+To stop the running containers, use:
+
+```bash
+docker compose down
+```
+
+This command will stop and remove the containers.
 
 ---
 
