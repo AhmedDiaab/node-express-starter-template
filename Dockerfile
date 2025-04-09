@@ -34,6 +34,6 @@ COPY --from=builder /app/dist ./dist
 # Copy .env as .env.production (if exists), default name is .env.development
 COPY --from=builder /app/.env.development ./.env.development 
 
-EXPOSE 3000
+EXPOSE ${PORT}
 
 CMD ["node", "-r", "tsconfig-paths/register", "dist/src/server.js"]
