@@ -1,5 +1,5 @@
 import { databaseConfiguration } from "@/config";
-import { logger } from "@/utils/logger.util";
+import { logger } from "@/utils";
 import { IDatabaseClient, IEntity, IRepository } from "@lib/database";
 import { DataSource } from 'typeorm';
 

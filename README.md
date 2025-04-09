@@ -128,7 +128,7 @@ No more long relative imports!
 Example:
 
 ```ts
-import { logger } from '@/utils/logger.util';
+import { logger } from '@/utils';
 import { IDatabaseClient } from '@lib/database';
 ```
 
@@ -190,7 +190,7 @@ Example `database-client.ts`:
 ```ts
 import { DataSource } from 'typeorm';
 import { databaseConfiguration } from '@/config';
-import { logger } from '@/utils/logger.util';
+import { logger } from '@/utils';
 
 class DatabaseClient {
   private _dataSource = new DataSource(databaseConfiguration);

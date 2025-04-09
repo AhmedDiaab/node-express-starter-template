@@ -1,6 +1,6 @@
 import { createServer } from 'http';
 import { env } from '@/utils';
-import { logger } from '@/utils/logger.util';
+import { logger } from '@/utils';
 import app from '@/app';
 import { databaseClient } from '@/database';
 
