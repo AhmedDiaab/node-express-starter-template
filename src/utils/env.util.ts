@@ -36,6 +36,7 @@ class EnvironmentVariables {
             'DB_LOGGING',
             'DB_SSL',
             'DB_USEUTC',
+            'JWT_SECRET',
         ];
     }
 
@@ -109,6 +110,10 @@ class EnvironmentVariables {
 
     get databaseUseUTC() {
         return ENV["DB_USE_UTC"]! === "true";
+    }
+
+    get jwtSecret() {
+        return ENV["JWT_SECRET"];
     }
 
 }
