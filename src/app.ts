@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import { globalErrorHandler, notFoundHandler } from '@/handlers';
 import { RouteAssembly } from '@/utils';
 import { loggerMiddleware, responseFormatter } from '@/middlewares';
+import { passportManager } from '@/modules/auth';
+
 const app: Application = express();
 
 
@@ -15,6 +17,10 @@ app.use(responseFormatter);
 
 // Middleware for logging
 app.use(loggerMiddleware);
+
+// Register passport
+app.use(passportManager.initialize());
+
 
 // Register routes
 app.use("/api/v1", RouteAssembly.createRouter());
