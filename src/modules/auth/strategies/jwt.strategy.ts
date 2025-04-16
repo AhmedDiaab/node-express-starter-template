@@ -1,4 +1,4 @@
-import { env } from "@/utils";
+import { env } from "@/core";
 import { BaseAuthStrategy } from "@lib/auth";
 import { ExtractJwt, Strategy as JwtStrategy, StrategyOptionsWithRequest } from 'passport-jwt';
 

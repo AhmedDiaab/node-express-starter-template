@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { logger } from "@/utils";
+import { logger } from "@/core";
 
 export class RouteAssembly {
     private static routes: Router[] = [];

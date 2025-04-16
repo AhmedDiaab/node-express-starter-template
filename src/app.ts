@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 import { globalErrorHandler, notFoundHandler } from '@/handlers';
-import { RouteAssembly } from '@/utils';
+import { RouteAssembly } from '@/core';
 import { loggerMiddleware, responseFormatter } from '@/middlewares';
 import { passportManager } from '@/modules/auth';
 

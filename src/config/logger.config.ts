@@ -1,4 +1,4 @@
-import { env } from '@/utils';
+import { env } from '@/core';
 import { join } from 'path';
 import { LoggerOptions } from 'pino';
 import { cwd } from 'process';

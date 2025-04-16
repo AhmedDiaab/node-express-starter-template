@@ -1,4 +1,4 @@
-import { env } from "@/utils";
+import { env } from "@/core";
 import { DataSourceOptions } from "typeorm";
 
 export const databaseConfiguration: DataSourceOptions = {

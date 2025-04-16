@@ -1,4 +1,4 @@
 import { pinoHttp } from 'pino-http';
-import { logger } from "@/utils";
+import { logger } from "@/core";
 
 export const loggerMiddleware = pinoHttp({ logger });
